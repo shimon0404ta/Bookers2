@@ -1,0 +1,22 @@
+<!--プロフィール画面、呼び出し元でローカル変数を定義-->
+<h1>User info</h1>
+  <table class="table">
+    <tr>
+      <td><%= attachment_image_tag user,:profile_image,:fill,100,100,format:"jpeg",fallback:"no_image.jpg",size:'100x100' %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>introduction</td>
+    </tr>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.introduction %></td>
+    </tr>
+  </table>
+
+
+  <%= link_to edit_user_path(user.id),class:"btn btn-block btn-outline-secondary p-0 mt-3" do %>
+    <i class="fas fa-user-cog"></i>
+
+  <% end %>

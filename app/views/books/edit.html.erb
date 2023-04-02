@@ -1,2 +1,34 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<!--投稿フォーム-->
+<!--エラーメッセージ（部分テンプレート）-->
+<%= render "books/error_message",class:"text-danger" %>
+
+<div class="container pt-3 pb5">
+ <div class="row">
+  <div class="col-lg-5 mx-auto">
+
+   <h1>Editing Book</h1>
+
+   <%= form_with model: @book,local:true do |f| %>
+    <div class="form-group">
+     <h4>Title</h4>
+     <%= f.text_field :title,class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+     <h4>Option</h4>
+     <%= f.text_area :body,class:"form-control" %>
+    </div>
+    <div class="py-2">
+     <%= f.submit "Update Book",class:"btn btn-success" %>
+    </div>
+     <% if @book.user == current_user %>
+      <div class="text-primary pt-2">
+       <%= link_to "Show",book_path(@book),class:"btn btn-primary p-1" %>
+        |
+       <%= link_to "Back",books_path,class:"btn btn-secondary p-1"%>
+      </div>
+     <% end %>
+   <% end %>
+  </div>
+ </div>
+</div>

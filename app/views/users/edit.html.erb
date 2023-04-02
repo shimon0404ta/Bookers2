@@ -1,2 +1,30 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<!--ユーザープロフィール編集-->
+<div class="container pt-3 pb-5">
+  <div class="row">
+    <div class="col-lg-5 mx-auto">
+      <h2>User info</h2>
+      <!--エラーメッセージ-->
+      <span class="text-danger"><%= render "users/error_message" %></span>
+
+        <%= form_with model:@user,local:true do |f| %>
+          <div class="form-group py-2">
+            <label for="inputName">Name</label>
+            <%= f.text_field:name,autofocus:true,id:"inputName",class:"form-control" %>
+          </div>
+
+          <div>
+            <label for="inputImage">Image</label>
+            <%= attachment_image_tag @user,:profile_image,:fill,60,60,fallback:"no_image.jpg" %>
+            <%= f.attachment_field :profile_image,placeholder:"ファイルを選択",class:"py-3" %>
+          </div>
+
+          <div class="form-group py-3">
+            <label for="inputInt">Introduction</label>
+            <%= f.text_field:introduction,autofocus:true,id:"inputInt",class:"form-control" %>
+          </div>
+
+            <%= f.submit "Update User",class:"text-light btn btn-secondary" %>
+        <% end %>
+      </div>
+  </div>
+</div>

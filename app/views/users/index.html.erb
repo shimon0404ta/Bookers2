@@ -1,2 +1,52 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<!--ユーザー一覧-->
+<div class="container pt-3 pb-5">
+  <div class="row">
+    <div class="col-md-3 pr-1">
+      <!--エラーメッセージ（部分テンプレート）-->
+      <%= render "books/error_message" %>
+
+      <!--プロフィール（部分テンプレート）-->
+      <%= render "users/user_info",user:@user %>
+
+
+      <!--投稿フォーム（部分テンプレート）-->
+      <%= render "books/new_book",book:@book %>
+    </div>
+
+  <!--ユーザー一覧-->
+    <div class="col-md-8 offset-md-1">
+      <!--見出し-->
+      <h1>Users</h1>
+      <table class="table table-resposive">
+        <!--テーブルのヘッダー-->
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <!--実データ-->
+        <% @users.each do |user| %>
+          <tbody>
+            <tr>
+              <td>
+                <!--ユーザー画像-->
+                <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg",size:'60x60' %>
+              </td>
+
+              <td>
+                <!--ユーザー名-->
+                  <%= user.name %>
+              </td>
+
+              <td>
+                 <%= link_to "Show",user_path(user.id) %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

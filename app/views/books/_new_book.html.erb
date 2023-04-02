@@ -1,0 +1,16 @@
+<!--投稿フォーム-->
+<div class="pt-4">
+ <h1>New book</h1>
+ <%= form_with model: book,local:true do |f| %>
+  <div class="form-group">
+   <h4 class="py-2">Title</h4>
+   <%= f.text_field :title,class:"form-contorol" %>
+  </div>
+  <div class="form-group">
+   <h4 class="py-2">Option</h4>
+   <%= f.text_area :body,class:"form-control" %>
+  </div>
+
+   <%= f.submit "Create Book",class:"btn btn-success" %>
+ <% end %>
+</div>
