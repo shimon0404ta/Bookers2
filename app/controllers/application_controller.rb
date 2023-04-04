@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
-  # 他のコントローラからも参照できる
+  # 他のコントローラからも参照できる(ストロングパラメータの広域版-単域版はprivate)
   protected
   # sign_upの際にnameとemailが認証キー
   def configure_permitted_parameters

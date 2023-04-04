@@ -2,29 +2,41 @@
 <div class="container pt-3 pb-5">
   <div class="row">
     <div class="col-lg-5 mx-auto">
-      <h2>User info</h2>
-      <!--エラーメッセージ-->
-      <span class="text-danger"><%= render "users/error_message" %></span>
 
-        <%= form_with model:@user,local:true do |f| %>
-          <div class="form-group py-2">
-            <label for="inputName">Name</label>
-            <%= f.text_field:name,autofocus:true,id:"inputName",class:"form-control" %>
-          </div>
+     <h2>User info</h2>
 
-          <div>
-            <label for="inputImage">Image</label>
-            <%= attachment_image_tag @user,:profile_image,:fill,60,60,fallback:"no_image.jpg" %>
-            <%= f.attachment_field :profile_image,placeholder:"ファイルを選択",class:"py-3" %>
-          </div>
-
-          <div class="form-group py-3">
-            <label for="inputInt">Introduction</label>
-            <%= f.text_field:introduction,autofocus:true,id:"inputInt",class:"form-control" %>
-          </div>
-
-            <%= f.submit "Update User",class:"text-light btn btn-secondary" %>
+     <span class="text-danger">
+       <%= form_with model:@user, local: true do |form| %>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</br>
+              <% @user.errors.full_messages.each do |message| %>
+                <%= message %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
+
+    <%= form_with model: @user do |f| %>
+      <div class="form-group py-2">
+        <label for="user_name">Name</label>
+        <%= f.text_field :name,autofocus:true,id:"inputName",class:"form-control" %>
       </div>
+
+      <div>
+        <label for="user_image">Image</label><br>
+           <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" ,class:"py-3" %>
+      </div>
+
+      <div class="form-group py-3">
+        <label for="user_introduction">Introduction</label><br>
+           <%= f.text_area :introduction ,autofocus:true,id:"inputInt",class:"form-control" %>
+      </div>
+
+      <%= f.submit 'Update User',class:"btn btn-secondary" %>
+    <% end %>
+   </div>
   </div>
-</div>
+ </div>
+
+ <h1>ユーザープロフ編集</h1>

@@ -1,56 +1,56 @@
-<!--
-一覧ページ
--->
+<!--一覧ページ-->
 <div class="container pt-3 pb-5">
   <div class="row">
     <div class="col-md-3 pr-1">
-      <!--エラーメッセージ（部分テンプレート）-->
-      <%= render "books/error_message" %>
+      
+    <% if @book.errors.any? %>
+      <%= @book.errors.count %> errors prohibited this book from being saved:</br>
+      <% @book.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
 
-      <!--プロフィール（部分テンプレート）-->
-      <%= render "users/user_info",user:@user %>
+    <%= render 'users/userinfo', user: @user %>
 
-       <!--投稿フォーム（部分テンプレート）-->
-      <%= render "books/new_book",book:@book %>
+    <%= render 'books/newbook', book: @book %>
     </div>
 
-    <!--投稿一覧-->
-    <div class="col-md-8 offset-md-1">
-
-      <h1>Books</h1>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
+   <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+        <table class="table">
+          <thead>
+            <th>
+            <th>ooo</th>
             <th>Title</th>
             <th>Opinion</th>
-          </tr>
-        </thead>
-
-        <% @books.each do |book| %>
+           </th>
+          </thead>
+          
+          <% @books.each do |book| %>
           <tbody>
-            <tr>
+		       <tr>
+		         <td>
+		           
+		          <%= link_to user_path(book.user) do %>
+		            <%= image_tag book.user.get_profile_image(80,80) %>
+              <% end %>
+            </td>
+            
               <td>
-                <!--ユーザー詳細リンク-->
-                <%= link_to user_path(book.user.id) do %>
-                  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg",size:'60x60' %>
-                <% end %>
-              </td>
-
-              <td>
-                <!--ブック詳細リンク-->
-                <%= link_to book_path(book.id) do %>
+                <%=link_to book_path(book.id) do %>
                   <%= book.title %>
                 <% end %>
               </td>
-
-              <td><%= book.body %></td>
-
-            </tr>
+              <tb>
+                <%= book.body %>
+              </td>
+              
+           </tr>
           </tbody>
         <% end %>
-      </table>
-    </div>
+       </table>
+   </div>
   </div>
 </div>
+
+   <h1>一覧ページ</h1>

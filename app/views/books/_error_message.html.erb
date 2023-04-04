@@ -1,7 +1,0 @@
-<!--エラーメッセージ-->
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>error prohibited this obj from being saved:</br>
-  <%= @book.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
