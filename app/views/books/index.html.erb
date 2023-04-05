@@ -1,15 +1,18 @@
-<!--一覧ページ-->
+<!--本一覧ページ-->
+<!--newbook作成時エラー文-->
+<div class="container ">
+    <% if @book.errors.any? %>
+      <h3><%= @book.errors.count %> errors prohibited this book from being saved:</h3>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <% end %>
+</div>
+
+<!--User info と New book欄（左側部分）-->
 <div class="container pt-3 pb-5">
   <div class="row">
     <div class="col-md-3 pr-1">
-      
-    <% if @book.errors.any? %>
-      <%= @book.errors.count %> errors prohibited this book from being saved:</br>
-      <% @book.errors.full_messages.each do |message| %>
-        <%= message %>
-      <% end %>
-    <% end %>
-
     <%= render 'users/userinfo', user: @user %>
 
     <%= render 'books/newbook', book: @book %>
@@ -17,40 +20,38 @@
 
    <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-        <table class="table">
+        <table class="table table-hover table-inverse">
           <thead>
-            <th>
-            <th>ooo</th>
-            <th>Title</th>
-            <th>Opinion</th>
-           </th>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
           </thead>
-          
+
           <% @books.each do |book| %>
           <tbody>
-		       <tr>
-		         <td>
-		           
-		          <%= link_to user_path(book.user) do %>
-		            <%= image_tag book.user.get_profile_image(80,80) %>
-              <% end %>
-            </td>
-            
+		        <tr>
+		          <td>
+		            <%= link_to user_path(book.user) do %>
+		              <%= image_tag book.user.get_profile_image(80,80) %>
+                <% end %>
+              </td>
+
               <td>
-                <%=link_to book_path(book.id) do %>
+                <%= link_to book_path(book.id) do %>
                   <%= book.title %>
                 <% end %>
               </td>
-              <tb>
+
+              <td>
                 <%= book.body %>
               </td>
-              
-           </tr>
+
+            </tr>
           </tbody>
         <% end %>
        </table>
    </div>
   </div>
 </div>
-
-   <h1>一覧ページ</h1>

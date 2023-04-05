@@ -1,4 +1,4 @@
-<!--プロフィール画面、呼び出し元でローカル変数を定義-->
+<!--プロフィール画面、部分テンプレート-->
     <h2>User info</h2>
       <table class="table">
         <tr>
@@ -14,7 +14,7 @@
           <td><%= user.introduction %></td>
         </tr>
       </table>
-     
+
   <div class="row">
        <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-default btn-block" do %>
          <i class="fas fa-user-cog"></i>

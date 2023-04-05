@@ -5,19 +5,21 @@
 
      <h2>User info</h2>
 
-     <span class="text-danger">
+       <!--プロフィール編集時のエラー文-->
        <%= form_with model:@user, local: true do |form| %>
           <% if @user.errors.any? %>
             <div id="error_explanation">
-              <%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</br>
+              <h3><%= pluralize(@user.errors.count, "error") %> prohibited this product from being saved:</h3>
               <% @user.errors.full_messages.each do |message| %>
-                <%= message %>
+                <li><%= message %></li>
               <% end %>
             </div>
           <% end %>
         <% end %>
 
+    <!--プロフィール編集画面のname,image,introduction-->
     <%= form_with model: @user do |f| %>
+
       <div class="form-group py-2">
         <label for="user_name">Name</label>
         <%= f.text_field :name,autofocus:true,id:"inputName",class:"form-control" %>
@@ -30,13 +32,12 @@
 
       <div class="form-group py-3">
         <label for="user_introduction">Introduction</label><br>
-           <%= f.text_area :introduction ,autofocus:true,id:"inputInt",class:"form-control" %>
+          <%= f.text_area :introduction ,autofocus:true,id:"inputInt",class:"form-control" %>
       </div>
 
       <%= f.submit 'Update User',class:"btn btn-secondary" %>
     <% end %>
+
    </div>
   </div>
  </div>
-
- <h1>ユーザープロフ編集</h1>
